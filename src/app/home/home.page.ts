@@ -46,17 +46,20 @@ export class HomePage implements OnInit{
     private appService: AppService,
     private router: Router) {
       this.result = null;
-      this.email = this.appService.getMyEmail();
-      this.password = this.appService.getMyPassword();
-      if(this.email == null || this.password == null){
-        alert('Please login first!')
-        router.navigate(['/login']);
-      }
     }
 
     ngOnInit(): void {
       
     }
+
+  ionViewWillEnter(){
+    this.email = this.appService.getMyEmail();
+    this.password = this.appService.getMyPassword();
+      if(this.email == null || this.password == null){
+        alert('Please login first!')
+        this.router.navigate(['/login']);
+      }
+  }
   chooseFromCamera(sourceType){
     const options: CameraOptions = {
        quality: 100,
@@ -181,6 +184,7 @@ export class HomePage implements OnInit{
     else{
     let jsonObject: any = JSON.parse(response.data);
     this.result = <Result>jsonObject;
+    this.appService.setMyResult(this.result)
 
     console.log('RESULT: ', this.result.result)
     console.log('SUCCESS: ', this.result.success)

@@ -1,6 +1,12 @@
-<p>
-  Chart loaded!
-</p>
-<div>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Dog Classifier
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<div *ngIf="chart">
   <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
 </div>
+</ion-content>

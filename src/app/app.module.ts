@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
+import { ExampleComponent } from './example.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
@@ -17,7 +18,7 @@ import { AppService } from './shared.service';
 // import { Http } from '@angular/http';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ExampleComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, CommonModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
