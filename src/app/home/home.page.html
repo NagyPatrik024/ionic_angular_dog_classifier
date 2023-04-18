@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Dog Classifier
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Dog Classifier</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- <div [hidden]="result == null" class="eredmény" *ngFor="let pred of result.predictions">
+    <p>{{pred.label}}</p>
+    <p>-</p>
+    <p>{{pred.probability}}</p>
+  </div> -->
+
+  <div id="container">
+  
+    <ion-grid>
+      <ion-row>
+        <div *ngIf="imageurl">
+          <img [src]="santizeUrl(imageurl)" height="100" width="150"/>
+         </div>
+      </ion-row>
+      <ion-row>
+        <p><ion-button (click)="selectimageOptions()">Select Image</ion-button></p>
+        <p><ion-button [disabled]="!imageurlresult" (click)="getimagefile(imageurlresult)"> Predict </ion-button></p>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
