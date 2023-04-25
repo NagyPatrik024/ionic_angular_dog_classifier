@@ -15,19 +15,22 @@ import { Crop } from '@ionic-native/crop/ngx';
 import { HTTP } from '@ionic-native/http/ngx';
 import { HttpClientModule} from '@angular/common/http';
 import { AppService } from './shared.service';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
+
 // import { Http } from '@angular/http';
 
 @NgModule({
   declarations: [AppComponent, ExampleComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, CommonModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, CommonModule,],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   File,
   Camera,
   ImagePicker,
   Crop,
   HTTP,
-  AppService 
+  AppService ,
+  NativeStorage
   ],
   bootstrap: [AppComponent],
 })

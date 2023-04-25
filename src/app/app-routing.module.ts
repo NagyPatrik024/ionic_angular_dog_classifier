@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { ExampleComponent } from './example.component';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,9 @@ import { ExampleComponent } from './example.component';
           {
             path: 'chart',
             loadChildren: () => import('./chart/chart.module').then( m => m.ChartComponentModule)
+          },
+          {
+            path: 'logout', component: LogoutComponent
           },
         ],
       },

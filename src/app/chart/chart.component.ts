@@ -10,38 +10,35 @@ import { Result } from '../home/prediction';
 export class ChartComponent implements OnInit{
   chart: boolean;
   result: Result;
+  chartOptions = {
+    animationEnabled: true,
+    theme: "dark2",
+    title:{
+    text: "Prediction result"
+    },
+    data: [{
+    type: "doughnut",
+    yValueFormatString: "#,###.##'%'",
+    indexLabel: "{name}: {y}",
+    dataPoints: [
+      { y: 28, name: "Labour" }
+    ]
+    }]
+    }	
 
   constructor(private appService: AppService) {
     this.chart = false;
    }
 
   ngOnInit() {}
-  chartOptions = {
-  animationEnabled: true,
-  title:{
-  text: "Prediction result"
-  },
-  data: [{
-  type: "doughnut",
-  yValueFormatString: "#,###.##'%'",
-  indexLabel: "{name}: {y}",
-  dataPoints: [
-    { y: 28, name: "Labour" },
-    { y: 10, name: "Legal" },
-    { y: 20, name: "Production" },
-    { y: 15, name: "License" },
-    { y: 23, name: "Facilities" },
-    { y: 17, name: "Taxes" },
-    { y: 12, name: "Insurance" }
-  ]
-  }]
-	}	
+  
   ionViewWillEnter(){
     this.result = this.appService.getMyResult();
     if (this.result != null) {
-      this.chart = true
+      this.chart = true;
       this.chartOptions = {
         animationEnabled: true,
+        theme: "dark2",
         title:{
         text: "Prediction result"
         },
@@ -49,12 +46,24 @@ export class ChartComponent implements OnInit{
         type: "doughnut",
         yValueFormatString: "#,###.##'%'",
         indexLabel: "{name}: {y}",
-        dataPoints: [
-          { y: 70, name: "Teszt" },
-          { y: 30, name: "Teszt2" },
-            ]
-          }]
-        }	
+        dataPoints: setDataPoints(this.appService)
+        }]
+      }	
+      
     }
   }
-}            
+}
+
+function setDataPoints(appService){
+  var temp = []
+  var result = appService.getMyResult();
+  result.predictions.forEach(function (value) {
+    console.log(value.label);
+    console.log(value.probability);
+    // this.chartOptions.data[0].dataPoints.push({y: value.probability, name: value.label});
+    temp.push({ y: value.probability, name: value.label });
+  }); 
+  return temp;
+//return {a,b};
+}
+           

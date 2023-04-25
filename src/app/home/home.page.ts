@@ -92,12 +92,11 @@ export class HomePage implements OnInit{
     };
     this.imagepicker.getPictures(options).then((imageresult)=> {
     console.log('Image Picker Result: innen::idaig', imageresult);
-    if(!imageresult)
+    if(imageresult != null)
     {
-      this.imageurlresult = imageresult
-      for(let i=0; i<imageresult.length; i++){
-       this.imageurl = this.securepath.Ionic.WebView.convertFileSrc(imageresult[i]);
-      }
+      this.imageurl = this.securepath.Ionic.WebView.convertFileSrc(imageresult[0]);
+      this.imageurlresult = imageresult[0];
+      this.cropimage(imageresult[0]);
     }
     
     }, rror=>{
@@ -136,7 +135,8 @@ export class HomePage implements OnInit{
    this.crop.crop(imageurl,   this.imageOptions).then((crop)=>{
     console.log('Cropped Image:', crop);
     console.log('Cropped Image02:', crop.split('?')[0]);
-    this.getimagefile(crop);
+    this.imageurlresult = crop;
+    this.imageurl = this.securepath.Ionic.WebView.convertFileSrc(crop); 
    },error=>{
      console.log('error croping Image', error);
    });
